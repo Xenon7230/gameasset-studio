@@ -12,7 +12,7 @@
 - 目录骨架：`src/gameasset_studio/`、`docs/`
 - 项目配置：`pyproject.toml`、`.gitignore`、`.env.example`
 - 文档：`README.md`、项目简报、架构设计、实验计划、本路线图
-- git 仓库初始化（`main` 分支，尚未提交）
+- git 仓库初始化，`main` 分支已推送至 `origin`
 
 **退出标准**
 
@@ -151,7 +151,7 @@
 
 ### 工程与流程
 
-- [ ] 首次提交（M0 文档与配置）
+- [x] 首次提交并推送（M0 文档与配置）
 - [ ] 预提交检查（ruff / mypy，可选）
 - [ ] CI：仅 lint + 无 GPU 测试（不含模型下载）
 - [ ] 约定分支与提交信息格式（单人项目可简化）
