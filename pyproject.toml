@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gameasset-studio"
+dynamic = ["version"]
+description = "Controllable image generation and evaluation for game concept art (SDXL + ComfyUI)."
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["stable-diffusion", "sdxl", "comfyui", "controlnet", "concept-art"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+]
+
+# PyTorch is intentionally NOT declared here: the CUDA build must match the
+# GPU driver and ComfyUI (RTX 5060 Ti / sm_120 needs a CUDA 12.8+ wheel), so it
+# is installed explicitly as an environment step. See README section 7.
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "PyYAML>=6.0.1",
+    "Pillow>=10.4",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[tool.hatch.version]
+path = "src/gameasset_studio/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gameasset_studio"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["gameasset_studio"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "-q"
